@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const Splash = () => {
+const Splash = ({ navigation }) => {
     return (
         <View style={styles.conatiner}>
             <View style={styles.header}>
@@ -11,7 +11,7 @@ const Splash = () => {
                 <Image source={require('../assests/logo.png')} style={styles.image} />
             </View>
             <View style={styles.size}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("login")}>
                     <Text style={styles.text_color}>Get Started</Text>
                 </TouchableOpacity>
             </View>
@@ -29,37 +29,38 @@ const styles = StyleSheet.create({
     header: {
         paddingVertical: 10,
         paddingHorizontal: 30,
+        alignItems: 'center',
     },
     header_text: {
         color: "#fff",
         fontWeight: "bold",
         fontSize: 50,
-        alignItems: 'center',
+
     },
     footer: {
-        paddingHorizontal: 15,
+        paddingHorizontal: 35,
         paddingVertical: 10,
     },
     image: {
         height: 250,
         width: '100%',
     },
-    size:{
-        justifyContent:"center",
-        alignItems:"center",
+    size: {
+        justifyContent: "center",
+        alignItems: "center",
     },
-    button:{
-        backgroundColor:"#fff",
-        height:40,
-        width:'50%',
-        borderRadius:5,
+    button: {
+        backgroundColor: "#fff",
+        height: 40,
+        width: '50%',
+        borderRadius: 5,
         justifyContent: "center",
         alignItems: 'center',
-        marginTop:30,
+        marginTop: 30,
     },
-    text_color:{
-        color:'#5956E9',
-        fontWeight:"bold",
-       
+    text_color: {
+        color: '#5956E9',
+        fontWeight: "bold",
+
     },
 })
