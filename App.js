@@ -4,6 +4,8 @@ import Splash from './Screens/Splash'
 import Login from './Screens/Login';
 import Register from './Screens/Register';
 import Search from './Screens/Search';
+import Items from './Screens/Items';
+import Favorites from './Screens/Favorites';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
@@ -16,6 +18,8 @@ const App = () => {
         <Stack.Screen name='login' component={Login} />
         <Stack.Screen name='register' component={Register} />
         <Stack.Screen name='search' component={Search} />
+        <Stack.Screen name="items" component={Items} />
+        <Stack.Screen name="fav" component={Favorites} />
       </Stack.Navigator>
     </NavigationContainer>
   )

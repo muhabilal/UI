@@ -1,7 +1,7 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const Search = () => {
+const Search = ({ navigation }) => {
     return (
         <View style={styles.container}>
             {/* <View style={styles.header}>
@@ -11,7 +11,14 @@ const Search = () => {
                 />
             </View> */}
             <View style={styles.text_size}>
-                <Text style={styles.text}>Found 6 results</Text>
+                <TouchableOpacity onPress={() => { navigation.navigate('items') }}>
+                    <Text style={styles.text}>Found 6 results</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.text_size}>
+                <TouchableOpacity onPress={() => { navigation.navigate('fav') }}>
+                    <Text style={styles.text}>Fav.</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
