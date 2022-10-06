@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 import { Antdesign } from 'react-native-vector-icons/AntDesign'
+import OrderHistory from './Screens/OrderHistory';
 const App = () => {
   return (
     <NavigationContainer>
@@ -20,6 +21,7 @@ const App = () => {
         <Stack.Screen name='search' component={Search} />
         <Stack.Screen name="items" component={Items} />
         <Stack.Screen name="fav" component={Favorites} />
+        <Stack.Screen name='orderhistory' component={OrderHistory} />
       </Stack.Navigator>
     </NavigationContainer>
   )

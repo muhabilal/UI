@@ -1,51 +1,56 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
+import Button from '../Components/Button'
+import Forms from '../Components/Forms'
+import { ScrollView } from 'react-native-gesture-handler'
 
 const Login = ({ navigation }) => {
-  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  // console.log(inputValue) error
+  const handleScreen = useCallback(
+    () => {
+      if (email != "" && password != "") {
+        navigation.navigate('search')
+      } else {
+        alert("Please fill the form")
+      }
+    },
+    [email, password],
+  )
+
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.header_text}>Welcome back</Text>
-      </View>
-      <View style={styles.footer}>
+    <View style={{ flex: 1, backgroundColor: '#5956E9' }}>
+      <View style={{ flex: 0.3, backgroundColor: '#5956E9', justifyContent: 'center' }}>
+        <Text style={{ color: 'white', fontSize: 60, alignSelf: 'center' }}>WellCome</Text>
+        <Text style={{ color: 'white', fontSize: 60, marginLeft: 55 }}>Back</Text>
+      </View >
+
+      <View style={{ flex: 0.7, borderTopLeftRadius: 20, borderTopRightRadius: 20, backgroundColor: 'white', paddingHorizontal: 30, paddingVertical: 30 }}>
         <Text style={styles.footer_text}>Login</Text>
-        <View style={styles.mt}>
-          <Text>Email</Text>
-          <TextInput
-            style={styles.size}
-            placeholder='Enter Your Email'
-            value={name}
-            onChangeText={setName}
-          />
+        <View style={styles.mt} >
+          <Forms name="Email" Placeholder="Enter email" />
         </View>
-        <View style={styles.mt}>
-          <Text>Password</Text>
-          <TextInput
-            style={styles.size}
-            secureTextEntry={true}
-            placeholder='Enter Passcode'
-            value={password}
-            onChangeText={setPassword}
-          />
+        <View style={styles.mt} >
+          <Forms name="Password" Placeholder="Enter passcode" hide={true} />
         </View>
         <View style={styles.forgot}>
           <TouchableOpacity>
-            <Text style={styles.forgot_text}>Forgot Passcode?</Text>
+            <Text style={styles.text_color}>Forgot password?</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.setbtn}>
-          <TouchableOpacity style={styles.button} onPress={() => { navigation.navigate('search') }}>
-            <Text style={styles.text_color}>Login</Text>
+        <View style={{ justifyContent: 'center', marginTop: 40 }}>
+          <TouchableOpacity>
+            <Button btnText="Login" bg_color="white" text_Color="#5956E9" />
           </TouchableOpacity>
         </View>
-        <View style={styles.account_text}>
-          <TouchableOpacity onPress={() => navigation.navigate('register')}>
-            <Text style={styles.forgot_text}> Create New Account</Text>
+        <View style={styles.account}>
+          <TouchableOpacity>
+            <Text style={styles.text_color}>Create New Account</Text>
           </TouchableOpacity>
         </View>
       </View>
+
     </View >
   )
 }
@@ -53,67 +58,28 @@ const Login = ({ navigation }) => {
 export default Login
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#5956E9"
-  },
-  header: {
-    flex: 1,
-    alignItems: "center",
-    paddingHorizontal: 30,
-    paddingVertical: 30,
-  },
-  header_text: {
-    color: '#fff',
-    fontWeight: "bold",
-    fontSize: 50,
-  },
-  footer: {
-    flex: 3,
-    backgroundColor: "#fff",
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    paddingHorizontal: 30,
-    paddingVertical: 30,
-  },
   footer_text: {
     fontWeight: 'bold',
     color: "black",
+    fontSize: 20,
   },
   mt: {
     marginTop: 20,
   },
-  size: {
-    borderBottomWidth: 1,
-    height: 40
-  },
   forgot: {
-    marginTop: 15,
-  },
-  forgot_text: {
-    color: "#5956E9",
-  },
-  setbtn: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 35,
-  },
-  button: {
-    backgroundColor: "#5956E9",
-    height: 40,
-    width: '50%',
-    borderRadius: 5,
-    justifyContent: "center",
-    alignItems: 'center',
+    marginTop: 30,
   },
   text_color: {
-    color: '#fff',
-    fontWeight: "bold",
+    color: "#5956E9",
   },
   account_text: {
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 5,
   },
-
+  account: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
 })

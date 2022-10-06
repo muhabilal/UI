@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, } from 'react-native'
 import React, { useState } from 'react'
+import Button from '../Components/Button'
+import Forms from '../Components/Forms'
 const Register = ({ navigation }) => {
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
@@ -14,37 +16,40 @@ const Register = ({ navigation }) => {
 
                 <Text style={styles.footer_text}>SignUp</Text>
                 <View style={styles.mt}>
-                    <Text>Email</Text>
+                    {/* <Text>Email</Text>
                     <TextInput
                         style={styles.size}
                         placeholder='Enter Your Email'
                         value={name}
                         onChangeText={setName}
-                    />
+                    /> */}
+                    <Forms name="Email" Placeholder="Enter email" />
                 </View>
                 <View style={styles.mt}>
-                    <Text>Password</Text>
+                    {/* <Text>Password</Text>
                     <TextInput
                         style={styles.size}
                         secureTextEntry={true}
                         placeholder='Enter Passcode'
                         value={password}
                         onChangeText={setPassword}
-                    />
+                    /> */}
+                    <Forms name='Password' Placeholder='Enter Passcode' hide={true} />
                 </View>
                 <View style={styles.mt}>
-                    <Text>Password</Text>
+                    {/* <Text>Password</Text>
                     <TextInput
                         style={styles.size}
                         secureTextEntry={true}
                         placeholder='Enter Passcode'
                         value={passswordEnter}
                         onChangeText={setPassswordEnter}
-                    />
+                    /> */}
+                    <Forms name='Password' Placeholder='Enter Passcode' hide={true} />
                 </View>
                 <View style={styles.setbtn}>
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.text_color}>Register</Text>
+                    <TouchableOpacity>
+                        <Button btnText="Register" bg_color="white" text_Color="#5956E9" />
                     </TouchableOpacity>
                 </View>
                 <View style={styles.account_text}>
@@ -99,9 +104,10 @@ const styles = StyleSheet.create({
         color: "#5956E9",
     },
     setbtn: {
-        justifyContent: 'center',
-        alignItems: 'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
         marginTop: 30,
+        marginLeft: 80
     },
     button: {
         backgroundColor: "#5956E9",

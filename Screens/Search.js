@@ -20,6 +20,11 @@ const Search = ({ navigation }) => {
                     <Text style={styles.text}>Fav.</Text>
                 </TouchableOpacity>
             </View>
+            <View style={styles.text_size}>
+                <TouchableOpacity onPress={() => { navigation.navigate('orderhistory') }}>
+                    <Text style={styles.text}>History</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
