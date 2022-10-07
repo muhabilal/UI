@@ -12,27 +12,29 @@ const Login = ({ navigation }) => {
     () => {
       if (email != "" && password != "") {
         navigation.navigate('search')
+        setEmail('')
+        setPassword('')
       } else {
         alert("Please fill the form")
       }
     },
-    [email, password],
+    [email, password, setEmail, setPassword],
   )
 
   return (
     <View style={{ flex: 1, backgroundColor: '#5956E9' }}>
       <View style={{ flex: 0.3, backgroundColor: '#5956E9', justifyContent: 'center' }}>
-        <Text style={{ color: 'white', fontSize: 60, alignSelf: 'center' }}>WellCome</Text>
+        <Text style={{ color: 'white', fontSize: 60, alignSelf: 'center', }}>WellCome</Text>
         <Text style={{ color: 'white', fontSize: 60, marginLeft: 55 }}>Back</Text>
       </View >
 
       <View style={{ flex: 0.7, borderTopLeftRadius: 20, borderTopRightRadius: 20, backgroundColor: 'white', paddingHorizontal: 30, paddingVertical: 30 }}>
         <Text style={styles.footer_text}>Login</Text>
         <View style={styles.mt} >
-          <Forms name="Email" Placeholder="Enter email" />
+          <Forms name="Email" Placeholder="Enter email" inputValue={email} setInputValue={setEmail} />
         </View>
         <View style={styles.mt} >
-          <Forms name="Password" Placeholder="Enter passcode" hide={true} />
+          <Forms name="Password" Placeholder="Enter passcode" hide={true} inputValue={password} setInputValue={setPassword} />
         </View>
         <View style={styles.forgot}>
           <TouchableOpacity>
@@ -40,12 +42,12 @@ const Login = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={{ justifyContent: 'center', marginTop: 40 }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleScreen}>
             <Button btnText="Login" bg_color="white" text_Color="#5956E9" />
           </TouchableOpacity>
         </View>
         <View style={styles.account}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => { navigation.navigate("register") }}>
             <Text style={styles.text_color}>Create New Account</Text>
           </TouchableOpacity>
         </View>

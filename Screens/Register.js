@@ -1,64 +1,57 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, } from 'react-native'
+import React, { useState, useCallback } from 'react'
 import Button from '../Components/Button'
 import Forms from '../Components/Forms'
 const Register = ({ navigation }) => {
-    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [passswordEnter, setPassswordEnter] = useState("")
-    console.log(name)
+    const handleError = useCallback(
+        () => {
+            if (email != '' && password != '' && passswordEnter != '') {
+                alert("Your account is registered")
+                setEmail('')
+                setPassword('')
+                setPassswordEnter('')
+            }
+            else {
+                alert("Please enter the valid information")
+            }
+        },
+        [email, password, passswordEnter, setEmail, setPassword, setPassswordEnter],
+    )
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.header_text}>Register</Text>
             </View>
+            {/* <ScrollView> */}
             <View style={styles.footer}>
-
-                <Text style={styles.footer_text}>SignUp</Text>
+                <Text style={styles.footer_text}>SignIn</Text>
                 <View style={styles.mt}>
-                    {/* <Text>Email</Text>
-                    <TextInput
-                        style={styles.size}
-                        placeholder='Enter Your Email'
-                        value={name}
-                        onChangeText={setName}
-                    /> */}
-                    <Forms name="Email" Placeholder="Enter email" />
+                    <Forms name="Email" Placeholder="Enter email" inputValue={email} setInputValue={setEmail} />
                 </View>
                 <View style={styles.mt}>
-                    {/* <Text>Password</Text>
-                    <TextInput
-                        style={styles.size}
-                        secureTextEntry={true}
-                        placeholder='Enter Passcode'
-                        value={password}
-                        onChangeText={setPassword}
-                    /> */}
-                    <Forms name='Password' Placeholder='Enter Passcode' hide={true} />
+                    <Forms name="Password" Placeholder="Enter passcode" inputValue={password} setInputValue={setPassword} hide={true} />
                 </View>
                 <View style={styles.mt}>
-                    {/* <Text>Password</Text>
-                    <TextInput
-                        style={styles.size}
-                        secureTextEntry={true}
-                        placeholder='Enter Passcode'
-                        value={passswordEnter}
-                        onChangeText={setPassswordEnter}
-                    /> */}
-                    <Forms name='Password' Placeholder='Enter Passcode' hide={true} />
+                    <Forms name="Password" Placeholder="Enter passcode" inputValue={passswordEnter} setInputValue={setPassswordEnter} hide={true} />
                 </View>
-                <View style={styles.setbtn}>
-                    <TouchableOpacity>
-                        <Button btnText="Register" bg_color="white" text_Color="#5956E9" />
+                <View style={{ marginTop: 50 }}>
+                    <TouchableOpacity onPress={handleError}>
+                        <Button btnText='Register' text_Color="#5956E9" bg_color='white' />
                     </TouchableOpacity>
                 </View>
-                <View style={styles.account_text}>
-                    <TouchableOpacity onPress={() => { navigation.navigate("login") }}>
-                        <Text style={styles.forgot_text}> Already have account? Login</Text>
+                <View style={styles.row}>
+                    <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'center', }} onPress={() => { navigation.navigate('login') }}>
+                        <Text style={{ color: "#5956E9" }}>Already have account?</Text>
+                        <Text style={{ textDecorationLine: 'underline', color: "#5956E9" }}>Login</Text>
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+            {/* </ScrollView> */}
+        </View >
     )
 }
 
@@ -70,19 +63,18 @@ const styles = StyleSheet.create({
         backgroundColor: "#5956E9",
     },
     header: {
-        flex: 1,
-        alignItems: 'center',
-        paddingHorizontal: 30,
-        paddingVertical: 30,
+        flex: 0.3,
+        // backgroundColor: 'red',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     header_text: {
         color: '#fff',
-        fontWeight: "bold",
-        fontSize: 50,
-        marginTop: 30,
+        fontWeight: "800",
+        fontSize: 65
     },
     footer: {
-        flex: 3,
+        flex: 0.7,
         backgroundColor: '#fff',
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
@@ -90,40 +82,17 @@ const styles = StyleSheet.create({
         paddingVertical: 30,
     },
     footer_text: {
-        fontWeight: 'bold',
-        color: "black",
+        fontWeight: '700',
+        color: "#000000",
+        fontSize: 18,
     },
     mt: {
         marginTop: 20,
     },
-    size: {
-        borderBottomWidth: 1,
-        height: 40
+    row: {
+        marginTop: 10,
+
     },
-    forgot_text: {
-        color: "#5956E9",
-    },
-    setbtn: {
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        marginTop: 30,
-        marginLeft: 80
-    },
-    button: {
-        backgroundColor: "#5956E9",
-        height: 40,
-        width: '50%',
-        borderRadius: 5,
-        justifyContent: "center",
-        alignItems: 'center',
-    },
-    text_color: {
-        color: '#fff',
-        fontWeight: "bold",
-    },
-    account_text: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 5,
-    },
+
+
 })

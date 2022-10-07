@@ -7,7 +7,6 @@ const Forms = (props) => {
     const secure = props.hide
     const Value = props.inputValue
     const setValue = props.setInputValue
-    console.log(Value)
     return (
         <ScrollView>
             <View>
